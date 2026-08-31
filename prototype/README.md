@@ -1,7 +1,16 @@
 # 原版小游戏（历史学习原型）
 
 此目录保留21维观测、四方向动作的Pygame环境，及Dueling/Double DQN智能体。
-从仓库根目录按照主README运行演示。训练请进入本目录后运行 `python train.py`。
+从仓库根目录运行以下命令观看历史原型。训练请进入本目录后运行 `python train.py`。
+
+```bash
+python -m pip install -r prototype/requirements.txt
+python prototype/play.py --model prototype/models/dueling_dqn_dense_best.pth --episodes 3
+```
+
+![历史演示，版本未完整绑定](../media/ai_play.gif)
+
+上图不代表当前v2实验结果，当前实验使用28维观测，不能与此处21维权重混用。
 
 ## 已知局限
 

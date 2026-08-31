@@ -37,14 +37,15 @@ class FishEnv:
 
     Observation contains the controlled fish (x, y, size) and the six nearest
     NPC fish (relative x/y, relative size, signed horizontal velocity). Sorting
-    by distance gives stable semantics to slots; velocity removes a major source
-    of partial observability in the original environment.
+    by distance gives nearest-neighbour slots, not persistent fish identities.
+    Remaining horizon is included for the fixed-horizon task (28 features).
     """
 
     width, height = 800.0, 600.0
     max_npc, min_npc = 6, 4
     action_dim = 4
-    state_dim = 3 + max_npc * 4
+    state_dim = 4 + max_npc * 4
+    version = 'finite-horizon-v2'
 
     def __init__(
         self,
@@ -54,6 +55,8 @@ class FishEnv:
         big_fish_prob: float = 0.4,
     ):
         self.reward_cfg = RewardConfig.preset(reward) if isinstance(reward, str) else reward
+        if max_steps <= 0:
+            raise ValueError('max_steps must be positive')
         self.max_steps = max_steps
         self.big_fish_prob = big_fish_prob
         self.rng = np.random.default_rng(seed)
@@ -68,6 +71,7 @@ class FishEnv:
         self.x, self.y, self.size = 400.0, 300.0, 30.0
         self.steps = self.fish_eaten = 0
         self.deaths = 0
+        self._ended = False
         self.npc = []
         for _ in range(4):
             self._spawn()
@@ -96,11 +100,14 @@ class FishEnv:
                 fish[3] / 3.0,
             ])
         features.extend([0.0] * (4 * (self.max_npc - len(ordered))))
-        return np.asarray(own + features, dtype=np.float32)
+        remaining = max(0.0, 1.0 - self.steps / self.max_steps)
+        return np.asarray(own + features + [remaining], dtype=np.float32)
 
     def step(self, action: int) -> Tuple[np.ndarray, float, bool, Dict[str, float]]:
         if action not in range(self.action_dim):
             raise ValueError("action must be in {0,1,2,3}")
+        if self._ended:
+            raise RuntimeError('Episode ended; call reset before step')
         self.steps += 1
         before = (self.x, self.y)
         if action == 0:
@@ -154,8 +161,12 @@ class FishEnv:
             if (self.x, self.y) == before:
                 components["idle"] = -self.reward_cfg.idle
 
-        truncated = self.steps >= self.max_steps
-        done = done or truncated
+        death = done
+        time_limit = self.steps >= self.max_steps
+        # Both death and the observed finite horizon end future task rewards.
+        # An external training budget cutoff does not set this terminal mask.
+        done = death or time_limit
+        self._ended = done
         training_reward = float(sum(components.values()))
         # A reward-independent task return, used only for fair evaluation.
         objective_return = 5.0 * self.fish_eaten - 5.0 * self.deaths
@@ -164,6 +175,8 @@ class FishEnv:
             "fish_eaten": float(self.fish_eaten),
             "death": float(self.deaths),
             "objective_return": objective_return,
-            "truncated": float(truncated),
+            "terminated": float(done),
+            "time_limit": float(time_limit),
+            "truncated": 0.0,
         }
         return self._observation(), training_reward, done, info

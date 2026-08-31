@@ -18,10 +18,11 @@ def test_observation_and_all_reward_presets():
     for reward in ["sparse", "approach", "approach_danger", "full"]:
         env = FishEnv(reward=reward, seed=0, max_steps=5)
         state = env.reset()
-        assert state.shape == (27,)
+        assert state.shape == (28,)
         for _ in range(5):
             state, value, done, info = env.step(0)
-        assert done and info["truncated"] == 1.0
+        assert done and info['time_limit'] == 1.0 and info['terminated'] == 1.0
+        assert info['truncated'] == 0.0 and state[-1] == 0.0
 
 
 def test_every_exploration_policy_returns_valid_action():

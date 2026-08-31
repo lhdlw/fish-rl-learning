@@ -26,7 +26,7 @@ def test_reward_presets_do_not_change_task_dynamics():
 @pytest.mark.parametrize('architecture', ['vanilla', 'dueling'])
 def test_training_step_and_evaluation_isolation(architecture):
     env = FishEnv(seed=3, max_steps=20)
-    agent = DQNAgent(27, 4, AgentConfig(architecture=architecture, warmup=8, batch_size=8), seed=3, device='cpu')
+    agent = DQNAgent(env.state_dim, 4, AgentConfig(architecture=architecture, warmup=8, batch_size=8), seed=3, device='cpu')
     state = env.reset()
     for _ in range(10):
         action = agent.act(state)

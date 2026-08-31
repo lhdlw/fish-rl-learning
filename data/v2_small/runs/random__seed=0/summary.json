@@ -1,0 +1,15 @@
+{
+  "run_id": "random__seed=0",
+  "method": "random",
+  "seed": 0,
+  "train_steps": 0,
+  "updates": 0,
+  "eval_episodes": 50,
+  "objective_return": 0.3,
+  "fish_eaten": 0.44,
+  "success_rate": 0.4,
+  "death_rate": 0.38,
+  "episode_length": 422.26,
+  "training_return": 0.3,
+  "seconds": 1.161637306213379
+}

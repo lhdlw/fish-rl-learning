@@ -1,0 +1,37 @@
+{
+  "method": "dqn_full",
+  "seed": 1,
+  "train_env_seed": 1835504127,
+  "policy_seed": 1596810411,
+  "agent_config": {
+    "architecture": "dueling",
+    "exploration": "epsilon",
+    "lr": 0.0001,
+    "gamma": 0.93,
+    "batch_size": 64,
+    "buffer_size": 80000,
+    "warmup": 500,
+    "target_update": 300,
+    "epsilon_start": 0.9,
+    "epsilon_end": 0.02,
+    "decay_steps": 10000,
+    "temperature_start": 1.0,
+    "temperature_end": 0.05
+  },
+  "reward_config": {
+    "name": "full",
+    "eat": 5.0,
+    "death": -5.0,
+    "approach_small": 0.15,
+    "danger": 0.5,
+    "idle": 0.1
+  },
+  "environment_version": "finite-horizon-v2",
+  "state_dim": 28,
+  "horizon": 500,
+  "training_steps": 15000,
+  "eval_episodes": 50,
+  "device": "cpu",
+  "threads": 1,
+  "seed_scheme": "SeedSequence([seed, stream, episode]); train=0,eval=1,policy=2"
+}

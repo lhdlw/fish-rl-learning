@@ -1,0 +1,15 @@
+{
+  "run_id": "dqn_sparse__seed=0",
+  "method": "dqn_sparse",
+  "seed": 0,
+  "train_steps": 15000,
+  "updates": 14501,
+  "eval_episodes": 50,
+  "objective_return": 1.0,
+  "fish_eaten": 0.42,
+  "success_rate": 0.3,
+  "death_rate": 0.22,
+  "episode_length": 455.1,
+  "training_return": 1.0,
+  "seconds": 57.23058295249939
+}

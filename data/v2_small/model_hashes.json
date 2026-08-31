@@ -1,0 +1,12 @@
+{
+  "algorithm": "SHA256",
+  "note": "Only dqn_full__seed=0 is included in this archive. Other checkpoints remain local.",
+  "checkpoints": {
+    "dqn_full__seed=0": "90342751eae1200d8caf3f7ffae9f6a192feac97f22df484a47d23523d7c4eaf",
+    "dqn_full__seed=1": "7bf2c08495b453361c31fb5f2c725084ed392d906c158dc0e03c8a6cc9b98766",
+    "dqn_full__seed=2": "eb1af8502521a986047329b2dd32a8c23cada07ddff4a8a6e8e6806720030f23",
+    "dqn_sparse__seed=0": "1334027d522214796d56d06a50726099aa0bc57fe0fbd7bed646a9fbf5f4b721",
+    "dqn_sparse__seed=1": "dcb2547516d83ec1b1c792c7e1e5f2a49bb5c5f6d47954eb451cfc235a63603c",
+    "dqn_sparse__seed=2": "31a539126882dc60464c634f4cac0797db9ff294a2b6ece800c3c35b7f1f1cd9"
+  }
+}

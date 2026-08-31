@@ -1,0 +1,16 @@
+{
+  "selection_rule": "first evaluation episode; no search for best trajectory",
+  "method": "dqn_full",
+  "seed": 0,
+  "eval_env_seed": 3964924996,
+  "environment_version": "finite-horizon-v2",
+  "steps": 500,
+  "fish_eaten": 1,
+  "death": 0,
+  "training_return": -11.841032010730594,
+  "stride": 5,
+  "frame_duration_ms": 100,
+  "model_sha256": "90342751eae1200d8caf3f7ffae9f6a192feac97f22df484a47d23523d7c4eaf",
+  "renderer_sha256": "1b877863a23f1b6f440210e8f37a519a0beeee65a280cc04f68fb887d0878465",
+  "environment_sha256": "f06da0b376cb4a116491a4566ebc74d7c92a54d8db31a2aa0d7c69fabd4be20d"
+}

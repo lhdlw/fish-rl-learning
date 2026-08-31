@@ -50,14 +50,15 @@ class QNetwork(nn.Module):
 
 
 class ReplayBuffer:
-    def __init__(self, capacity: int):
+    def __init__(self, capacity: int, seed: int = 0):
         self.data = deque(maxlen=capacity)
+        self.rng = random.Random(seed)
 
     def add(self, *transition) -> None:
         self.data.append(transition)
 
     def sample(self, n: int):
-        batch = random.sample(self.data, n)
+        batch = self.rng.sample(self.data, n)
         s, a, r, ns, d = zip(*batch)
         return (np.asarray(s, np.float32), np.asarray(a, np.int64),
                 np.asarray(r, np.float32), np.asarray(ns, np.float32),
@@ -70,8 +71,6 @@ class ReplayBuffer:
 class DQNAgent:
     def __init__(self, state_dim: int, action_dim: int, config: AgentConfig,
                  seed: int = 0, device: str | None = None):
-        random.seed(seed)
-        np.random.seed(seed)
         torch.manual_seed(seed)
         self.rng = np.random.default_rng(seed)
         self.cfg, self.action_dim = config, action_dim
@@ -80,7 +79,7 @@ class DQNAgent:
         self.target = QNetwork(state_dim, action_dim, config.architecture).to(self.device)
         self.target.load_state_dict(self.online.state_dict())
         self.optimizer = torch.optim.Adam(self.online.parameters(), lr=config.lr)
-        self.buffer = ReplayBuffer(config.buffer_size)
+        self.buffer = ReplayBuffer(config.buffer_size, seed=seed)
         self.updates = 0
 
     def _progress(self) -> float:

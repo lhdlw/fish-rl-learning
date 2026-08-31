@@ -1,0 +1,15 @@
+{
+  "run_id": "dqn_full__seed=1",
+  "method": "dqn_full",
+  "seed": 1,
+  "train_steps": 15000,
+  "updates": 14501,
+  "eval_episodes": 50,
+  "objective_return": -0.7,
+  "fish_eaten": 0.2,
+  "success_rate": 0.2,
+  "death_rate": 0.34,
+  "episode_length": 423.54,
+  "training_return": 2.643672225409797,
+  "seconds": 49.528767108917236
+}

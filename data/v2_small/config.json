@@ -1,0 +1,31 @@
+{
+  "methods": "random,dqn_sparse,dqn_full",
+  "seeds": "0,1,2",
+  "steps": 15000,
+  "eval_episodes": 50,
+  "max_steps": 500,
+  "warmup": 500,
+  "decay_steps": 10000,
+  "threads": 1,
+  "output": "results_v2_main",
+  "verbose": true,
+  "environment_version": "finite-horizon-v2",
+  "provenance": {
+    "code_commit": "05caf29fa8ed8a4124b2ac96ce55c57774cdbb13",
+    "working_tree": "",
+    "source_sha256": {
+      "run_experiments.py": "8485cda7c55aa62158804dc96de4bcee91ddb53405df8e53a2f6d07b1d93d24e",
+      "analyze_results.py": "26f7de5e7a4399c2fda42de7ad6356d2a1f73591307b366ae7759fbb426500fb",
+      "fishrl\\__init__.py": "1bb8da22222af7faa46e3f7cff3c80dde3a84e93ece0b99c6d63c32192a251b8",
+      "fishrl\\agent.py": "7046018be1ed9336e702f4be54df509870ebdfe1ddb4305f7883b1a1eae177af",
+      "fishrl\\environment.py": "f06da0b376cb4a116491a4566ebc74d7c92a54d8db31a2aa0d7c69fabd4be20d"
+    },
+    "python": "3.13.9",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "packages": {
+      "numpy": "2.3.5",
+      "torch": "2.13.0",
+      "matplotlib": "3.10.6"
+    }
+  }
+}
