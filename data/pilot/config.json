@@ -1,0 +1,14 @@
+{
+  "rewards": "sparse,full",
+  "explorations": "epsilon,softmax,dynamic_softmax",
+  "architectures": "dueling",
+  "seeds": "0,1,2",
+  "episodes": 20,
+  "eval_episodes": 10,
+  "max_steps": 300,
+  "warmup": 200,
+  "decay_steps": 3000,
+  "device": null,
+  "output": "pilot_results",
+  "verbose": true
+}
