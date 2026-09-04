@@ -1,7 +1,4 @@
-# 从小游戏到可检验的问题：数学学习草稿
-
-本文由 AI 辅助整理，供项目学习者逐项核对、手算与改写。它不是已经独立完成的证明报告，
-也不是算法创新声明。阅读时应把“代码做了什么”和“理论在什么假设下成立”分开。
+# 从小游戏到可检验的问题：
 
 ## 1. 定义：任务、观测与回报
 
@@ -111,12 +108,8 @@ s_m=\sqrt{\frac12\sum_{j=1}^3(\bar x_{m,j}-\bar x_m)^2}.
 4. 如果只挑最好看的录像？——它不能代表平均表现；应事先固定模型种子和录像环境种子。
 5. 这与老虎机有什么区别？——动作改变后续状态和机会，必须考虑未来回报；不只是估计各臂固定均值。
 
-建议学习者先独立解释一个 TD 更新、重算一行结果，再把自己的理解和仍然不懂的问题写成补充。
-无需把草稿中的每一句话都声称为自己已经掌握。
-
 ## 原始方法文献
 
 - van Hasselt, Guez, Silver：[Deep Reinforcement Learning with Double Q-learning](https://arxiv.org/abs/1509.06461)。
 - Wang et al.：[Dueling Network Architectures for Deep Reinforcement Learning](https://proceedings.mlr.press/v48/wangf16.html)。
 
-本项目只借用相关方法组件，不复现这些论文的 Atari 实验与结论。
