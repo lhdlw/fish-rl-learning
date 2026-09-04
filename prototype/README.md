@@ -10,7 +10,6 @@ python prototype/play.py --model prototype/models/dueling_dqn_dense_best.pth --e
 
 ![历史演示，版本未完整绑定](../media/ai_play.gif)
 
-上图不代表当前v2实验结果，当前实验使用28维观测，不能与此处21维权重混用。
 
 ## 已知局限
 
